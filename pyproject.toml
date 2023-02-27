@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "tg-scanner"
+version = "0.1.0"
+description = ""
+authors = ["Janphr"]
+readme = "README.md"
+packages = [{include = "tg_scanner"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Flask-SocketIO = "^4.3.2"
+Flask-Classful = "^0.14.2"
+Flask = "^1.1.2"
+Telethon = "^1.27.0"
+numpy = "^1.24.2"
+markupsafe = "2.0.1"
+
+[tool.poetry.scripts]
+main = "tg_scanner.main:main"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

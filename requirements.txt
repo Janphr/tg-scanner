@@ -1,0 +1,5 @@
+flask-socketio==4.3.2
+flask-classful
+Flask~=1.1.2
+Telethon~=1.24.0
+numpy~=1.22.1
