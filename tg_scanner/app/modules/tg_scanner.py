@@ -7,7 +7,7 @@ import threading
 from time import sleep
 
 import numpy as np
-from telethon.errors import ChannelPrivateError
+from telethon.errors import ChannelPrivateError, rpcerrorlist
 from telethon.sync import TelegramClient
 from telethon.tl.functions.messages import GetHistoryRequest
 
@@ -54,8 +54,8 @@ def hsv_to_rgb(h, s, v):
 
 class TGScanner(threading.Thread):
     api_id = 123
-    api_hash = 'API_HASH'
-    start_channel = 't.me/START_CHANNEL'
+    api_hash = 'api_hash'
+    start_channel = "t.me/start_channel"
 
     max_depth = 4
     from_date = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=18)
@@ -236,5 +236,11 @@ class TGScanner(threading.Thread):
         #     }]
         # })
 
-        sleep(5)
-        asyncio.run(self.scan())
+        while True:
+            sleep(5)
+            try:
+                asyncio.run(self.scan())
+            except (rpcerrorlist.PhoneNumberInvalidError, rpcerrorlist.AccessTokenInvalidError) as e:
+                print(e.message)
+                pass
+                

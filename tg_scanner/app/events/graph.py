@@ -15,7 +15,8 @@ class Graph(Namespace):
 
     def on_connect(self):
         print('Client connected!')
-        self.scanner.start()
+        if not self.scanner.is_alive():
+            self.scanner.start()
         pass
 
     def on_disconnect(self):
